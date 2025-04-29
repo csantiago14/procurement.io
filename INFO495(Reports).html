@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Reports</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to main CSS file -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004080;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #d1e7fd;
+        }
+        select {
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Procurement Data Repository</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="index.html#insights">Insights</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Procurement Reports Dashboard</h2>
+            <label for="filter">Filter by Category:</label>
+            <select id="filter" onchange="filterReports()">
+                <option value="all">All</option>
+                <option value="purchase_orders">Purchase Orders</option>
+                <option value="spend_analysis">Spend Analysis</option>
+                <option value="vendor_performance">Vendor Performance</option>
+                <option value="budget_utilization">Budget Utilization</option>
+                <option value="invoice_processing">Invoice Processing</option>
+                <option value="contract_compliance">Contract Compliance</option>
+            </select>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Report Name</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody id="reportTable">
+                    <tr data-category="spend_analysis">
+                        <td>SWAM Spend Analysis</td>
+                        <td>Spend Analysis</td>
+                        <td>2025-02-01</td>
+                        <td><a href="/Users/cedricsantiago/Downloads/centralrepo/SWAM Spend Analysis.pdf" download>Download</a></td>
+                    </tr>
+                    <tr data-category="spend_analysis">
+                        <td>Non-SWAM Spend Analysis</td>
+                        <td>Spend Analysis</td>
+                        <td>2025-01-15</td>
+                        <td><a href="/Users/cedricsantiago/Downloads/centralrepo/Non-SWAM Spend Analysis.pdf" download>Download</a></td>
+                    </tr>
+                    <tr data-category="vendor_performance">
+                        <td>Predictive Vendor Fulfillment Analysis Report</td>
+                        <td>Vendor Performance</td>
+                        <td>2024-12-20</td>
+                        <td><a href="/Users/cedricsantiago/Downloads/centralrepo/Predictive Vendor Fulfillment Analysis Report.pdf" download>Download</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Procurement Data Project | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function filterReports() {
+            var filterValue = document.getElementById('filter').value;
+            var rows = document.querySelectorAll('#reportTable tr');
+            rows.forEach(row => {
+                if (filterValue === 'all' || row.dataset.category === filterValue) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
